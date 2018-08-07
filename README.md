@@ -22,6 +22,8 @@ kubectl delete deployment usersvc
 ### Create Deployment
 kubectl create deployment -f ./config-deployment.yaml
 
+### Describe Deployment
+kubectl describe pod usersvc
 
 # Service
 
@@ -30,6 +32,12 @@ kubectl expose deployment usersvc --type=LoadBalancer
 
 ### Access the service
 minikube service usersvc
+
+### Describe service
+kubectl describe svc usersvc
+
+### Delete service
+kubectl delete svc usersvc
 
 # Cluster
 
@@ -45,11 +53,13 @@ kops create cluster \
 ### Update cluster to create
 kops update cluster ${NAME} --yes
 
+# Debugging
+kubectl logs -f <name> [-c <$container>]
+  
 # Extra
 
 ### Create S3 bucket for state store
 aws s3api create-bucket --bucket k8s.state.store.url.com --region ap-southeast-1 --create-bucket-configuration LocationConstraint=ap-southeast-1
-
 
 ### Create publich key ($HOME/.ssh/id_rsa)
 ssh-keygen
@@ -68,3 +78,6 @@ https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
 ### Get token
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 
+Furthermore, check
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
