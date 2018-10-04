@@ -87,3 +87,6 @@ minikube --extra-config apiserver.cors-allowed-origins=["http://*"] start
 
 ### Minikube up and running on mac 
 https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
+
+## Testing local docker registry image from minikube env
+minikube ssh -- docker images
