@@ -81,3 +81,9 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 Furthermore, check
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+### Start minikube with cors
+minikube --extra-config apiserver.cors-allowed-origins=["http://*"] start
+
+### Minikube up and running on mac 
+https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
