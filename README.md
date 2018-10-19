@@ -65,6 +65,9 @@ aws s3api create-bucket --bucket k8s.state.store.url.com --region ap-southeast-1
 ssh-keygen
 kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 
+### List pod with its Node
+kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --all-namespaces
+
 ### Install dashboard
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 
