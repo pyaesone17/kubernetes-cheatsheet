@@ -93,3 +93,6 @@ https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
 
 ## Testing local docker registry image from minikube env
 minikube ssh -- docker images
+
+## Force pull image to always via CLI
+kubectl rolling-update myapp --image=us.gcr.io/project-107012/myapp:5c3dda6b --image-pull-policy Always
