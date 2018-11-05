@@ -96,3 +96,7 @@ minikube ssh -- docker images
 
 ## Force pull image to always via CLI
 kubectl rolling-update myapp --image=us.gcr.io/project-107012/myapp:5c3dda6b --image-pull-policy Always
+
+## Rolling update hack using the same docker image tag
+kubectl patch deployment web -p \ "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+https://github.com/kubernetes/kubernetes/issues/33664
