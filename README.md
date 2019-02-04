@@ -100,3 +100,14 @@ kubectl rolling-update myapp --image=us.gcr.io/project-107012/myapp:5c3dda6b --i
 ## Rolling update hack using the same docker image tag
 kubectl patch deployment web -p \ "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 https://github.com/kubernetes/kubernetes/issues/33664
+
+## Pod stack at terminating
+Kill pod with force 
+kubectl delete pod NAME --grace-period=0 --force
+
+Obtain the node where pod is running
+kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --all-namespaces
+
+Restart the docker of the node which has stacked pod
+systemctl restart docker.socket docker.service
+
